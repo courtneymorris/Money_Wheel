@@ -19,4 +19,4 @@ def money_wheel(prizes):
     return random.choice(segments)
 
 
-print(money_wheel(prize_wheel))
+# print(money_wheel(prize_wheel))
