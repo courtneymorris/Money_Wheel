@@ -1,9 +1,20 @@
 import random
+from flask import Flask, request, jsonify
+import os
+
+app = Flask(__name__)
+
+
+@app.route('/', methods=["GET"])
+def add_profile():
+   return "Hello world" # HTML file to go here
+
 
 
 prize_wheel = {
-    '0': 12,
-    '$5': 6,
+    '0': 6,
+    '1': 5,
+    '$5': 4,
     '$25': 3,
     '$100': 2,
     '$500': 1
@@ -19,4 +30,9 @@ def money_wheel(prizes):
     return random.choice(segments)
 
 
-# print(money_wheel(prize_wheel))
+
+
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
