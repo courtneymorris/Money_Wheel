@@ -1,8 +1,9 @@
 import random
 
-
-
-money_wheel = {
+spin_cost = 5
+my_wallet = 15
+winnings = 0
+wheel = {
     0 : 6,
     1: 5,
     5 : 4,
@@ -11,30 +12,27 @@ money_wheel = {
     500 : 1
 }
 
-my_wallet = 15
 
-def spin(wheel, wallet):
-    segments = []
-    
-    for prize, chance in wheel.items():
-        for _ in range(chance):
-            segments.append(prize)
-            prize_won = random.choice(segments)
-    wallet = wallet + (prize_won - 5)
+def hasFunds():
+     return my_wallet > spin_cost
 
-    if prize_won != 0:
-        print(f'Congratulations! You\'ve won ${prize_won}! You have ${wallet} left. Let\'s play again!')
+
+def gamble():
+    if not hasFunds():
+          print(f'Not enough funds, your wallet balance is ${wallet}')
+          return
     else:
-        print(f'Oof, bad luck! Want to spin again?')
+        segments = []
+        for prize, chance in wheel.items():
+            for _ in range(chance):
+                segments.append(prize)
+                winnings = random.choice(segments)
+                wallet = my_wallet + (winnings  - spin_cost)
 
-    return wallet
+        if winnings > 0:
+            print(f'Congratulations! You\'ve won ${winnings}! You have ${wallet} left. Let\'s play again!')
+        else:
+            print(f'Oof, bad luck! Want to spin again? Current balance is ${wallet}')
 
-
-my_wallet = spin(money_wheel, my_wallet)
-my_wallet = spin(money_wheel, my_wallet)
-my_wallet = spin(money_wheel, my_wallet)
-my_wallet = spin(money_wheel, my_wallet)
-my_wallet = spin(money_wheel, my_wallet)
-my_wallet = spin(money_wheel, my_wallet)
-
-
+hasFunds()
+gamble()
