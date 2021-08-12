@@ -1,6 +1,15 @@
 import random
 import time
+import sys
+from termcolor import colored
 
+
+def printRed(skk): print("\033[91m {}\033[00m" .format(skk))
+def printGreen(skk): print("\033[92m {}\033[00m" .format(skk))
+def printYellow(skk): print("\033[93m {}\033[00m" .format(skk))
+def printLightPurple(skk): print("\033[94m {}\033[00m" .format(skk))
+def printPurple(skk): print("\033[95m {}\033[00m" .format(skk))
+def printCyan(skk): print("\033[96m {}\033[00m" .format(skk))
 
 
 spin_cost = 5
@@ -9,7 +18,7 @@ wheel = {
     0 : 20,
     1: 15,
     5 : 10,
-    25 : 5,
+    25 : 3,
     50 : 2,
     500 : 1
 }
@@ -32,79 +41,110 @@ def gamble(wallet):
     wallet = wallet + winnings - spin_cost
 
     if winnings > 0 and winnings < 500 and wallet >= 5:
-        print(f'\n\nCONGRATULATIONS!!! \n\nYou\'ve WON ${winnings}! \n\nYou have ${wallet} left.')
-    elif winnings > 0 and wallet < 5:
-        print(f'YAY! You won ${winnings}!\n\n')
-        time.sleep(1)
-        print(". . .\n\n")
-        time.sleep(1)
-        print(f'. . .but you only have ${wallet}, which isn\'t enough to play again.')
-    elif winnings == 500:
-        print("JACKPOT!!!!!!!\n\n")
+        printYellow(f'\n\nCONGRATULATIONS!!!')
         time.sleep(.5)
-        print("You've won $500!!!!!")
+        printPurple(f'\n\nYou\'ve WON ${winnings}! \n\nYou have ${wallet} left.')
+    elif winnings > 0 and wallet < 5:
+        printYellow(f'YAY!')
+        printPurple(f'You won ${winnings}!\n\n')
+        time.sleep(1)
+        printPurple(". . .\n\n")
+        time.sleep(1)
+        printPurple(f'. . .but you only have ${wallet}, which isn\'t enough to play again.')
+        time.sleep(1)
+    elif winnings == 500:
+        printGreen("JACKPOT!!!!!!!\n\n")
+        time.sleep(.5)
+        printYellow("You've won $500!!!!!")
     elif winnings == 0 and hasFunds(wallet):
-        print(f'\n\nOOF, bad luck!\n\nYou didn\'t win this time.\n\nYou have ${wallet} left')
+        printRed(f'\n\nOOF, bad luck!')
+        time.sleep(.5)
+        printLightPurple(f'\nYou didn\'t win this time.')
+        time.sleep(.5)
+        printPurple(f'\nYou have ${wallet} left')
     
     return wallet
 
 
 
+printYellow("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n WELCOME")
+time.sleep(.5)
+printGreen("         TO")
+time.sleep(.5)
+printPurple("             THE")
+time.sleep(.5)
 
-print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWELCOME")
-time.sleep(.5)
-print("\nTO")
-time.sleep(.5)
-print("\nTHE")
-time.sleep(.5)
-print("\nCASINO")
+printCyan("                  C")
+time.sleep(.25)
+printLightPurple("                     A")
+time.sleep(.25)
+printGreen("                        S")
+time.sleep(.25)
+printRed("                           I")
+time.sleep(.25)
+printPurple("                              N")
+time.sleep(.25)
+printYellow("                                 O")
 time.sleep(2)
+
 my_wallet = int(input("\n\n\nHow much did you bring to gamble today?\n\n$"))
-print("\n\n\nWOW, big spender!")
+printLightPurple("\n\n\nWOW, big spender!")
 time.sleep(.5)
-print("\nIt's just $5 to spin the wheel!")
-time.sleep(.5)
-start_response = input("\nReady to spin?\n\n")
+printYellow("\nIt's just $5 to spin the wheel!")
+time.sleep(1)
+start_response = input("\n\nReady to spin?\n\n")
 
 
 def play(wallet):
+    printCyan("\n\n\n\nSPINNING")
+    time.sleep(.25)
+    printLightPurple("\nSPINNING")
+    time.sleep(.25)
+    printYellow("\nSPINNING")
+    time.sleep(.25)
+    printGreen("\nSPINNING")
+    time.sleep(.25)
+    printPurple("\nSPINNING")
+    time.sleep(.25)
+    printCyan("\nSPINNING")
+    time.sleep(.25)
+    printLightPurple("\nSPINNING")
+    time.sleep(.25)
+    printYellow("\nSPINNING")
+    time.sleep(.25)
+    printGreen("\nSPINNING")
+    time.sleep(.25)
+    printPurple("\nSPINNING\n\n\n")
+    time.sleep(.25)
 
-    print("\n\n\n\nSPINNING")
-    time.sleep(.5)
-    print("\nSPINNING")
-    time.sleep(.5)
-    print("\nSPINNING")
-    time.sleep(.5)
-    print("\nSPINNING")
-    time.sleep(.5)
-    print("\nSPINNING\n\n\n")
-    time.sleep(.5)
     wallet = gamble(wallet)
+
     if start_response == "":
         while hasFunds(wallet):
-            response = input("\n\nWant to spin again?\n\n")
+            response = input("\n\n\nWant to spin again?\n\n")
             if response == "":
-                print("\n\n\n\nSPINNING")
+                printCyan("\n\n\n\nSPINNING")
                 time.sleep(.5)
-                print("\nSPINNING")
+                printLightPurple("\nSPINNING")
                 time.sleep(.5)
-                print("\nSPINNING")
+                printYellow("\nSPINNING")
                 time.sleep(.5)
-                print("\nSPINNING")
+                printGreen("\nSPINNING")
                 time.sleep(.5)
-                print("\nSPINNING\n\n\n")
+                printPurple("\nSPINNING\n\n\n")
                 time.sleep(.5)
                 wallet = gamble(wallet)
             else:
-                print("\n\n\n\naw, we really wanted to take the rest of your money.")
+                printYellow("\n\n\n\nAw man, we really wanted to take the rest of your money.\n\n\n")
+                time.sleep(.5)
+                printCyan("\n\n\n See you next time!\n\n\n\n\n\n\n")
                 break
         else:
-            print("\n\n\nDang! You gambled all your money away.")
+            printCyan("\n\n\nDang! I guess you gambled all your money away.")
             time.sleep(2)
-            print("\n\n\n...maybe you should go home and think about that.\n\n\n")
+            printPurple("\n\n\n...maybe you should go home and think about that.\n\n\n")
             time.sleep(2)
 
 
-        
 
 play(my_wallet)
